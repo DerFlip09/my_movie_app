@@ -167,7 +167,6 @@ def get_sorted_movies_by_year(data: dict) -> str:
     :param data: Movie data dictionary.
     :returns: Sorted list of movies by year.
     """
-    sort_order = True
     while True:
         sort_order = input("Do you want the latest movies first? (Y/N) ")
         if sort_order.upper() not in ("Y", "N"):
@@ -175,6 +174,8 @@ def get_sorted_movies_by_year(data: dict) -> str:
             continue
         elif sort_order.upper() == "N":
             sort_order = False
+            break
+        sort_order = True
         break
 
     sorted_movies = sorted(data.items(), key=lambda item: item[1]["year"], reverse=sort_order)

@@ -14,6 +14,7 @@ COMMAND_DISPATCHER = {0: {"description": "Exit", "function": None},
                       9: {"description": "Movies sorted by year", "function": dh.get_sorted_movies_by_year},
                       10: {"description": "Filter movies", "function": dh.get_filtered_movies_by_property}}
 
+
 def print_welcome():
     """
     Prints a welcome message for the Movie Database CLI.
