@@ -10,7 +10,7 @@ class MovieApp:
         return self._storage
 
     def _command_list_movies(self):
-        movies = self.storage.movies
+        movies = self.storage.list_movies()
         movie_list = []
         for title, details in movies.items():
             movie_list.append(f"{title} ({details['year']}): {details['rating']}")
@@ -33,36 +33,31 @@ class MovieApp:
         return self.storage.update_movie(title, rating)
 
     def _command_movie_stats(self):
-        movie_stats = Processor.get_movie_stats(self.storage.movies)
+        movie_stats = Processor.get_movie_stats(self.storage.list_movies())
         return movie_stats
 
     def _command_random_movie(self):
-        random_movie = Processor.get_random_movie(self.storage.movies)
+        random_movie = Processor.get_random_movie(self.storage.list_movies())
         return random_movie
 
     def _command_search_movie(self):
-        found_movie = Processor.get_movie_with_name(self.storage.movies)
+        found_movie = Processor.get_movie_with_name(self.storage.list_movies())
         return found_movie
 
     def _command_sorted_movies_by_rating(self):
-        sorted_movies = Processor.get_sorted_movies_by_rating(self.storage.movies)
+        sorted_movies = Processor.get_sorted_movies_by_rating(self.storage.list_movies())
         return sorted_movies
 
     def _command_sorted_movies_by_year(self):
-        sorted_movies = Processor.get_sorted_movies_by_year(self.storage.movies)
+        sorted_movies = Processor.get_sorted_movies_by_year(self.storage.list_movies())
         return sorted_movies
 
     def _command_filter_movie(self):
-        filtered_movies = Processor.get_filtered_movies_by_property(self.storage.movies)
+        filtered_movies = Processor.get_filtered_movies_by_property(self.storage.list_movies())
         return filtered_movies
 
     def _generate_website(self):
         pass
-
-    @staticmethod
-    def call_function(function, *args):
-        function(*args)
-        print()
 
     @staticmethod
     def dispatcher(welcome, menu, desc_funcs):

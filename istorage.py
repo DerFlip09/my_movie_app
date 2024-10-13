@@ -1,9 +1,9 @@
-from abc import ABC, abstractmethod, abstractproperty
+from abc import ABC, abstractmethod
 
 
 class IStorage(ABC):
-    @abstractproperty
-    def movies(self):
+    @abstractmethod
+    def list_movies(self):
         pass
 
     @abstractmethod
