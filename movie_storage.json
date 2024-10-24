@@ -1,1 +1,19 @@
-{"The Matrix": {"year": 1998, "rating": 8.0}, "Your Name. \u2013 Gestern, heute und f\u00fcr immer": {"year": 2016, "rating": 8.4}, "123": {"year": 1900, "rating": 5.0}, "1234": {"year": 1899, "rating": 5.0}}
+{
+    "The Matrix": {
+        "year": 1998,
+        "rating": 8.0
+    },
+    "Your Name. \u2013 Gestern, heute und f\u00fcr immer": {
+        "year": 2016,
+        "rating": 8.4
+    },
+    "123": {
+        "year": 1900,
+        "rating": 8.5
+    },
+    "Matrix": {
+        "year": 1999,
+        "rating": 8.4,
+        "poster": "matrix.img"
+    }
+}
