@@ -3,5 +3,10 @@
         "year": 1999,
         "rating": 8.7,
         "poster": "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_SX300.jpg"
+    },
+    "The Titanic": {
+        "year": 1996,
+        "rating": 7.1,
+        "poster": "https://m.media-amazon.com/images/M/MV5BMTYxMzUzNDEzN15BMl5BanBnXkFtZTcwMTE0NTMyMQ@@._V1_SX300.jpg"
     }
 }
