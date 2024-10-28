@@ -1,4 +1,12 @@
-from data_processor import DataProcessor as Processor
+from backend.data_processor import DataProcessor as Processor
+import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
+API_URL = f"http://www.omdbapi.com/?apikey={API_KEY}&t="
 
 
 class MovieApp:
@@ -18,10 +26,9 @@ class MovieApp:
 
     def _command_add_movie(self):
         title = input("Enter new movies title: ")
-        year = int(input("Enter the year: "))
-        rating = float(input("Enter the rating: "))
-        poster = input("Give me the filename of the poster: ")
-        return self.storage.add_movie(title, year, rating, poster)
+        api_query = API_URL + title
+        response = requests.get(api_query).json()
+        return self.storage.add_movie(title, response["Year"], response["imdbRating"], response["Poster"])
 
     def _command_delete_movie(self):
         title = input("Enter title to delete: ")
