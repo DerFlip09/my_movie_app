@@ -22,13 +22,13 @@ class MovieApp:
         movie_list = []
         for title, details in movies.items():
             movie_list.append(f"{title} ({details['year']}): {details['rating']}")
-        return f"\n{len(movies)} movies in total\n{"-"*18}\n" + "\n".join(movie_list)
+        return f"\n{len(movies)} movies in total\n{"-" * 18}\n" + "\n".join(movie_list)
 
     def _command_add_movie(self):
         title = input("Enter new movies title: ")
         api_query = API_URL + title
         response = requests.get(api_query).json()
-        return self.storage.add_movie(title, response["Year"], response["imdbRating"], response["Poster"])
+        return self.storage.add_movie(title, int(response["Year"]), float(response["imdbRating"]), response["Poster"])
 
     def _command_delete_movie(self):
         title = input("Enter title to delete: ")
@@ -64,13 +64,39 @@ class MovieApp:
         return filtered_movies
 
     def _generate_website(self):
-        pass
+        template_path = "_static/index_template.html"
+        with open(template_path, "r") as file:
+            html_template = file.read()
+
+        movie_item_template = """ <li>
+            <img src="__POSTER_URL__" alt="Poster of __TITLE__">
+            <h2 class="movie-title">__TITLE__</h2>
+            <div class="movie-year">__MOVIE_YEAR__</div>
+            <div class="movie-rating">IMDb Rating: __IMDB_RATING__</div>
+        </li>"""
+
+        movies = self.storage.list_movies()
+        movie_items = []
+        for title, data in movies.items():
+            movie_html = movie_item_template.replace("__POSTER_URL__", data["poster"])
+            movie_html = movie_html.replace("__TITLE__", title)
+            movie_html = movie_html.replace("__MOVIE_YEAR__", str(data["year"]))
+            movie_html = movie_html.replace("__IMDB_RATING__", str(data["rating"]))
+            movie_items.append(movie_html)
+
+        movie_grid = "\n".join(movie_items)
+        final_webpage = html_template.replace("__TEMPLATE_MOVIE_GRID__", movie_grid)
+
+        with open("_static/index.html", "w") as file:
+            file.write(final_webpage)
+
+        return "Website generated successfully as 'index.html'"
 
     @staticmethod
     def dispatcher(welcome, menu, desc_funcs):
         print(welcome)
         while True:
-            print("\nMenu:\n",menu)
+            print("\nMenu:\n", menu)
             try:
                 command = int(input(f"\nEnter choice (0-{len(desc_funcs) - 1}): "))
                 if not 0 <= command <= len(desc_funcs) - 1:

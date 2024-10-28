@@ -31,17 +31,23 @@ body {
 }
 
 .movie-title,
-.movie-year {
+.movie-year,
+.movie-rating {
   font-size: 0.8em;
   text-align: center;
 }
 
 .movie-title {
   margin-top: 10px;
+  margin-bottom: 0px;
 }
 
 .movie-year {
   color: #999;
+}
+
+.movie-rating {
+  color: #980
 }
 
 
